@@ -1,6 +1,6 @@
 import streamlit as st
 
-# Configura a página com layout wide
+# Configura a página com layout centralizado
 st.set_page_config(page_title="A Lenda de Metharion", layout="centered")
 
 # Estilização (adaptando o CSS do HTML para Streamlit)
@@ -27,17 +27,15 @@ st.markdown(
     .stButton button {
         background-color: #ffbf47 !important; /* Laranja no botão */
         color: white !important;
+        border: none !important;
+        border-radius: 5px !important;
+        padding: 15px !important;
+        font-size: 1.1rem !important;
+        cursor: pointer !important;
+        transition: background-color 0.3s ease !important;
     }
     .stButton button:hover {
         background-color: #ff9f00 !important; /* Laranja mais intenso no hover */
-    }
-    .stTextInput input {
-        color: white !important;
-        background-color: rgba(0, 0, 0, 0.3) !important;
-        border: 2px solid #ffbf47 !important;
-    }
-    .stTextInput input:focus {
-        border-color: #ff9f00 !important;
     }
     </style>
     """,
