@@ -1,7 +1,9 @@
 import streamlit as st
 
-st.set_page_config(layout="wide")
+# Configura a página com layout wide
+st.set_page_config(page_title="A Lenda de Metharion", layout="centered")
 
+# Estilização (adaptando o CSS do HTML para Streamlit)
 st.markdown(
     """
     <style>
@@ -10,30 +12,52 @@ st.markdown(
         background-size: cover;
     }
     .stApp {
-        background-color: rgba(0,0,0,0.7);
+        background-color: rgba(0, 0, 0, 0.7);
         padding: 2rem;
         border-radius: 15px;
+        color: white;
+    }
+    h1, h2, h3, p, label {
+        color: white !important;
+        text-align: center;
+    }
+    .form-title {
+        color: #ffbf47;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-st.markdown("<h1 style='text-align: center; color: white;'>🌟 A Lenda de Metharion 🌟</h1>", unsafe_allow_html=True)
+# Título principal
+st.markdown("<h1>🌟 A Lenda de Metharion 🌟</h1>", unsafe_allow_html=True)
 
-st.markdown("### Cadastre-se para receber novidades!", unsafe_allow_html=True)
+# Título do formulário
+st.markdown("<h2 class='form-title'>Cadastre-se para receber novidades!</h2>", unsafe_allow_html=True)
 
-# Formulário de entrada
-with st.form(key='form_cadastro'):
-    nome = st.text_input("Nome completo")
+# Formulário
+with st.form("formulario_metharion"):
+    nome = st.text_input("Nome Completo")
     email = st.text_input("E-mail")
     telefone = st.text_input("Telefone")
-    submit = st.form_submit_button("Cadastrar")
+    enviar = st.form_submit_button("Cadastrar")
 
-# Validação
-if submit:
-    if nome and email and telefone:
-        st.success(f"✅ Cadastro de {nome} realizado com sucesso!")
-        st.info("Você será notificado por e-mail sobre o novo cadastro.")
+# Lógica de validação e resposta
+if enviar:
+    if nome.strip() and email.strip() and telefone.strip():
+        st.success(f"✅ Cadastro de {nome} registrado com sucesso!")
+        st.info("📧 Você será notificado por e-mail sobre o novo cadastro.")
     else:
-        st.error("❌ Por favor, preencha todos os campos corretamente.")
+        st.error("❌ Por favor, preencha todos os campos!")
+
+# Redes sociais
+st.markdown("### Siga-nos nas redes sociais:")
+st.markdown("""
+<a href="https://instagram.com" target="_blank">Instagram</a> | 
+<a href="https://facebook.com" target="_blank">Facebook</a> | 
+<a href="https://youtube.com" target="_blank">YouTube</a>
+""", unsafe_allow_html=True)
+
+# Novidades
+st.markdown("### Novidades:")
+st.markdown("Em breve, mais atualizações sobre a Lenda de Metharion. Fique ligado!")
