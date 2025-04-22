@@ -1,20 +1,11 @@
 import streamlit as st
 
-# Configuração da página
-st.set_page_config(page_title="A Lenda de Metharion", layout="centered")
+# Definindo o título do aplicativo
+st.set_page_config(page_title="A Lenda de Metharion", page_icon="🌟")
 
-# Estilização com CSS, preservando o design do HTML
-st.markdown(
-    """
+# CSS personalizado para o fundo e estilo
+st.markdown("""
     <style>
-        /* Reset de margens e padding */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Cor de fundo e fonte */
         body {
             font-family: 'Arial', sans-serif;
             background: url('https://i.gifer.com/MDg5.gif') no-repeat center center fixed;
@@ -24,7 +15,6 @@ st.markdown(
             padding: 20px;
         }
 
-        /* Cabeçalho */
         h1 {
             font-size: 3rem;
             font-weight: bold;
@@ -32,7 +22,6 @@ st.markdown(
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
 
-        /* Formulário de Cadastro */
         .form-container {
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
@@ -80,7 +69,6 @@ st.markdown(
             background-color: #ff9f00;
         }
 
-        /* Estilo para links de redes sociais */
         .social-links {
             margin-top: 30px;
         }
@@ -97,65 +85,46 @@ st.markdown(
             color: #ff9f00;
         }
 
-        /* Novidades */
         .novidades {
             margin-top: 30px;
             font-size: 1.2rem;
             color: #ffbf47;
         }
-
-        /* Mensagem de status */
-        #mensagemStatus {
-            font-size: 1.2rem;
-            margin-top: 20px;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .form-container {
-                padding: 20px;
-                margin: 20px auto;
-            }
-
-            .social-links a {
-                font-size: 1.2rem;
-            }
-
-            .novidades {
-                font-size: 1.1rem;
-            }
-        }
     </style>
-    """, unsafe_allow_html=True
-)
+""", unsafe_allow_html=True)
 
-# Título principal
+# Título do cabeçalho
 st.markdown("<h1>🌟 A Lenda de Metharion 🌟</h1>", unsafe_allow_html=True)
 
-# Formulário
-with st.form(key='formCadastro'):
-    st.markdown("<h2>Cadastre-se para receber novidades!</h2>", unsafe_allow_html=True)
+# Formulário de Cadastro
+st.markdown('<div class="form-container"><h2>Cadastre-se para receber novidades!</h2>', unsafe_allow_html=True)
 
-    nome = st.text_input("Nome Completo", placeholder="Digite seu nome")
-    email = st.text_input("E-mail", placeholder="Digite seu e-mail")
-    telefone = st.text_input("Telefone", placeholder="Digite seu telefone")
-    
-    # Botão de envio do formulário
-    enviar = st.form_submit_button("Cadastrar")
+# Definindo os campos de entrada
+nome = st.text_input("Nome Completo")
+email = st.text_input("E-mail")
+telefone = st.text_input("Telefone")
 
-    # Lógica de validação e resposta
-    if enviar:
-        if nome and email and telefone:
-            st.success(f"✅ Cadastro de {nome} registrado com sucesso!")
-            st.info("📧 Você será notificado por e-mail sobre o novo cadastro.")
-        else:
-            st.error("❌ Por favor, preencha todos os campos!")
+# Função para simular o envio de dados
+def enviar_email(nome, email, telefone):
+    st.success(f"📢 Novo cadastro de {nome} com e-mail {email} e telefone {telefone}!")
 
-# Seção de redes sociais
+def salvar_dados(nome, email, telefone):
+    st.write(f"Cadastro de {nome}, {email}, {telefone}")
+    return f"Cadastro de {nome} registrado com sucesso!"
+
+# Ao submeter o formulário
+if st.button("Cadastrar"):
+    if nome and email and telefone:
+        resultado = salvar_dados(nome, email, telefone)
+        enviar_email(nome, email, telefone)
+        st.success(f"✅ {resultado} Você será notificado por e-mail sobre o novo cadastro.")
+    else:
+        st.error("❌ Por favor, preencha todos os campos!")
+
+# Fechando o form-container
+st.markdown('</div>', unsafe_allow_html=True)
+
+# Seção de Redes Sociais
 st.markdown("""
     <div class="social-links">
         <h3>Siga-nos nas redes sociais:</h3>
