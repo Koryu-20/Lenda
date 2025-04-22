@@ -3,9 +3,23 @@ import streamlit as st
 # Definindo o título do aplicativo
 st.set_page_config(page_title="A Lenda de Metharion", page_icon="🌟")
 
-# CSS personalizado para o fundo e estilo
+# Incluindo o código HTML completo no Streamlit
 st.markdown("""
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> A Lenda de Metharion </title>
     <style>
+        /* Reset de margens e padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Cor de fundo e fonte */
         body {
             font-family: 'Arial', sans-serif;
             background: url('https://i.gifer.com/MDg5.gif') no-repeat center center fixed;
@@ -15,6 +29,7 @@ st.markdown("""
             padding: 20px;
         }
 
+        /* Cabeçalho */
         h1 {
             font-size: 3rem;
             font-weight: bold;
@@ -22,6 +37,7 @@ st.markdown("""
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
 
+        /* Formulário de Cadastro */
         .form-container {
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
@@ -69,6 +85,7 @@ st.markdown("""
             background-color: #ff9f00;
         }
 
+        /* Estilo para links de redes sociais */
         .social-links {
             margin-top: 30px;
         }
@@ -85,59 +102,108 @@ st.markdown("""
             color: #ff9f00;
         }
 
+        /* Novidades */
         .novidades {
             margin-top: 30px;
             font-size: 1.2rem;
             color: #ffbf47;
         }
+
+        /* Mensagem de status */
+        #mensagemStatus {
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .form-container {
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            .social-links a {
+                font-size: 1.2rem;
+            }
+
+            .novidades {
+                font-size: 1.1rem;
+            }
+        }
     </style>
-""", unsafe_allow_html=True)
+</head>
+<body>
+    <h1>🌟 A Lenda de Metharion 🌟</h1>
 
-# Título do cabeçalho
-st.markdown("<h1>🌟 A Lenda de Metharion 🌟</h1>", unsafe_allow_html=True)
+    <!-- Formulário de Cadastro -->
+    <div class="form-container">
+        <h2>Cadastre-se para receber novidades!</h2>
+        <form id="formCadastro">
+            <input type="text" id="nome" placeholder="Nome Completo" required>
+            <input type="text" id="email" placeholder="E-mail" required>
+            <input type="text" id="telefone" placeholder="Telefone" required>
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p id="mensagemStatus"></p>
+    </div>
 
-# Formulário de Cadastro
-st.markdown('<div class="form-container"><h2>Cadastre-se para receber novidades!</h2>', unsafe_allow_html=True)
-
-# Definindo os campos de entrada
-nome = st.text_input("Nome Completo")
-email = st.text_input("E-mail")
-telefone = st.text_input("Telefone")
-
-# Função para simular o envio de dados
-def enviar_email(nome, email, telefone):
-    st.success(f"📢 Novo cadastro de {nome} com e-mail {email} e telefone {telefone}!")
-
-def salvar_dados(nome, email, telefone):
-    st.write(f"Cadastro de {nome}, {email}, {telefone}")
-    return f"Cadastro de {nome} registrado com sucesso!"
-
-# Ao submeter o formulário
-if st.button("Cadastrar"):
-    if nome and email and telefone:
-        resultado = salvar_dados(nome, email, telefone)
-        enviar_email(nome, email, telefone)
-        st.success(f"✅ {resultado} Você será notificado por e-mail sobre o novo cadastro.")
-    else:
-        st.error("❌ Por favor, preencha todos os campos!")
-
-# Fechando o form-container
-st.markdown('</div>', unsafe_allow_html=True)
-
-# Seção de Redes Sociais
-st.markdown("""
+    <!-- Seção de redes sociais -->
     <div class="social-links">
         <h3>Siga-nos nas redes sociais:</h3>
         <a href="https://instagram.com" target="_blank">Instagram</a>
         <a href="https://facebook.com" target="_blank">Facebook</a>
         <a href="https://youtube.com" target="_blank">YouTube</a>
     </div>
-""", unsafe_allow_html=True)
 
-# Seção de novidades
-st.markdown("""
+    <!-- Seção de novidades -->
     <div class="novidades">
         <h3>Novidades:</h3>
         <p>Em breve, mais atualizações sobre a Lenda de Metharion. Fique ligado!</p>
     </div>
+
+    <!-- Scripts -->
+    <script>
+        // Função para enviar e-mail (aqui está apenas como exemplo, o envio real deve ser feito via backend)
+        function enviarEmail(nome, email, telefone) {
+            // Simula o envio de e-mail
+            alert(`📢 Novo cadastro de ${nome} com e-mail ${email} e telefone ${telefone}!`);
+        }
+
+        // Função para salvar dados (simula o comportamento do backend)
+        function salvarDados(nome, email, telefone) {
+            // Aqui, você pode salvar os dados em um banco de dados real
+            console.log(`Cadastro de ${nome}, ${email}, ${telefone}`);
+            return `Cadastro de ${nome} registrado com sucesso!`;
+        }
+
+        // Função chamada quando o formulário é enviado
+        document.getElementById("formCadastro").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById("nome").value;
+            const email = document.getElementById("email").value;
+            const telefone = document.getElementById("telefone").value;
+
+            if (nome && email && telefone) {
+                // Salvar os dados (aqui é só simulação)
+                const resultado = salvarDados(nome, email, telefone);
+
+                // Enviar o e-mail (simulado)
+                enviarEmail(nome, email, telefone);
+
+                // Exibir a mensagem de sucesso
+                document.getElementById("mensagemStatus").innerHTML = `✅ ${resultado} Você será notificado por e-mail sobre o novo cadastro.`;
+                document.getElementById("mensagemStatus").style.color = "green";
+            } else {
+                document.getElementById("mensagemStatus").innerHTML = "❌ Por favor, preencha todos os campos!";
+                document.getElementById("mensagemStatus").style.color = "red";
+            }
+        });
+    </script>
+</body>
+</html>
 """, unsafe_allow_html=True)
