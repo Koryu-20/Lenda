@@ -31,6 +31,14 @@ st.markdown(
     .stButton button:hover {
         background-color: #ff9f00 !important; /* Laranja mais intenso no hover */
     }
+    .stTextInput input {
+        color: white !important;
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        border: 2px solid #ffbf47 !important;
+    }
+    .stTextInput input:focus {
+        border-color: #ff9f00 !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
