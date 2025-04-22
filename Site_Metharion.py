@@ -21,8 +21,15 @@ st.markdown(
         color: white !important;
         text-align: center;
     }
-    .form-title {
-        color: #ffbf47;
+    .form-title, .stTextInput label {
+        color: #ffbf47 !important;  /* Laranja nas frases e labels */
+    }
+    .stButton button {
+        background-color: #ffbf47 !important; /* Laranja no botão */
+        color: white !important;
+    }
+    .stButton button:hover {
+        background-color: #ff9f00 !important; /* Laranja mais intenso no hover */
     }
     </style>
     """,
